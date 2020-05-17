@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace Mahamudra.AdventOfCode.Core
 {
@@ -40,7 +41,7 @@ namespace Mahamudra.AdventOfCode.Core
         }
 
 
-        public static int DayTwoWhatFloorBigO2ɛn(string input)
+        public static int DayOneSecondQuestionWhatFloorBigO2ɛn(string input)
         {
             var symbols = input.ToCharArray();  //  number of char as the Length of the input string
             var count = 0;
@@ -61,5 +62,44 @@ namespace Mahamudra.AdventOfCode.Core
             return count;
         }
 
+        public static long DayTwoPaperBigOɛn(string[] input)
+        {
+            Int64 total = 0;
+            var separators = new string[] { "x" };
+
+            Func<Int64, Int64, Int64, Int64> paper = (x, y, z) => 2 * (x + y + z) + Math.Min(Math.Min(x, y), z);
+
+            foreach (var box in input)
+            {
+                var measures = box.Split(separators, System.StringSplitOptions.RemoveEmptyEntries).Select(x => Convert.ToInt64(x)).ToArray();
+                var l = measures[0];
+                var w = measures[1];
+                var h = measures[2];
+                Int64 x = l * w;
+                Int64 y = w * h;
+                Int64 z = h * l;
+                total += paper(x, y, z);
+            }
+            return total;
+        }
+
+        public static long DayTwoRibbonBigOɛn(string[] input)
+        {
+            Int64 total = 0;
+            var separators = new string[] { "x" };
+
+            Func<Int64, Int64, Int64, Int64> ribbon = (l, w, h) => (new Int64[] { l, w, h }).OrderBy(x => x).Take(2).Sum(x => 2 * x);
+            Func<Int64, Int64, Int64, Int64> bow = (l, w, h) => l * w * h;
+            foreach (var box in input)
+            {
+                var measures = box.Split(separators, System.StringSplitOptions.RemoveEmptyEntries).Select(x => Convert.ToInt64(x)).ToArray();
+                var l = measures[0];
+                var w = measures[1];
+                var h = measures[2];
+
+                total += ribbon(l, w, h) + bow(l, w, h);
+            }
+            return total;
+        }
     }
 }
