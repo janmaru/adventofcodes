@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Mahamudra.AdventOfCode.Core
@@ -100,6 +101,74 @@ namespace Mahamudra.AdventOfCode.Core
                 total += ribbon(l, w, h) + bow(l, w, h);
             }
             return total;
+        }
+
+
+        private static Func<(int, int), (int, int)> Right = (a) => (a.Item1 + 1, a.Item2);
+        private static Func<(int, int), (int, int)> Left = (a) => (a.Item1 - 1, a.Item2);
+        private static Func<(int, int), (int, int)> Up = (a) => (a.Item1, a.Item2 + 1);
+        private static Func<(int, int), (int, int)> Down = (a) => (a.Item1, a.Item2 - 1);
+
+        private static void DayThreeHouseBigOɛn(char symbol, ref Dictionary<(int, int), int> houses, ref (int, int) point)
+        {
+            switch (symbol)
+            {
+                case '>':
+                    point = Right(point);
+                    break;
+                case '<':
+                    point = Left(point);
+                    break;
+                case '^':
+                    point = Up(point);
+                    break;
+                case 'v':
+                    point = Down(point);
+                    break;
+                default:
+                    throw new Exception("wtf!");
+            }
+            var check = houses.TryAdd(point, 1);
+            if (!check)
+                houses[point] += 1;
+        }
+
+        public static long DayThreeHouseBigOɛn(string input)
+        {
+            Dictionary<(int, int), int> houses = new Dictionary<(int, int), int>();
+            var symbols = input.ToCharArray();
+            var point = (0, 0);
+            houses.Add(point, 1); // add first point start walk
+
+            foreach (var sy in symbols)
+            {
+                DayThreeHouseBigOɛn(sy, ref houses, ref point);
+            }
+
+            return houses.Count();
+        }
+
+        public static long DayThreeHouseTwoSantaBigO2ɛn(string input)
+        {
+            Dictionary<(int, int), int> houses = new Dictionary<(int, int), int>();
+            var pointS = (0, 0);
+            var pointRs = (0, 0);
+
+            var symbols = input.ToCharArray();
+            if (symbols.Length == 1)
+                throw new Exception("path valid only for one santa");
+
+            houses.Add(pointS, 2); // add first point start walk for each santa
+
+            for (int i = 0; i < symbols.Length; i++)
+            {
+                if (i % 2 == 0)
+                    DayThreeHouseBigOɛn(symbols[i], ref houses, ref pointS);
+                else
+                    DayThreeHouseBigOɛn(symbols[i], ref houses, ref pointRs);
+            }
+
+            return houses.Count();
         }
     }
 }
