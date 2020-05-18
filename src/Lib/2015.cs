@@ -8,6 +8,7 @@ namespace Mahamudra.AdventOfCode.Core
 {
     public class TwoThousandFifteen
     {
+        #region 1 day
         public static int DayOneWhatFloorBigO2ɛn(string input)
         {
             var symbols = input.ToCharArray();  //  number of char as the Length of the input string
@@ -64,7 +65,8 @@ namespace Mahamudra.AdventOfCode.Core
             }
             return count;
         }
-
+        #endregion
+        #region 2 day
         public static long DayTwoPaperBigOɛn(string[] input)
         {
             Int64 total = 0;
@@ -104,8 +106,8 @@ namespace Mahamudra.AdventOfCode.Core
             }
             return total;
         }
-
-
+        #endregion
+        #region 3 day
         private static Func<(int, int), (int, int)> Right = (a) => (a.Item1 + 1, a.Item2);
         private static Func<(int, int), (int, int)> Left = (a) => (a.Item1 - 1, a.Item2);
         private static Func<(int, int), (int, int)> Up = (a) => (a.Item1, a.Item2 + 1);
@@ -172,6 +174,8 @@ namespace Mahamudra.AdventOfCode.Core
 
             return houses.Count();
         }
+        #endregion
+        #region 4 day
 
         private static string GetMd5Hash(string input)
         {
@@ -192,18 +196,20 @@ namespace Mahamudra.AdventOfCode.Core
                 }
 
                 // Return the hexadecimal string.
-                return sBuilder.ToString(); 
-            } 
+                return sBuilder.ToString();
+            }
         }
 
-        public static Int32  DayFourAdventCoinsBigO2ɛn(string secretKey)
+        public static Int32 DayFourAdventCoinsBigO2ɛn(string secretKey, int numberOfZeros)
         {
+
             for (int i = 0; i <= Int32.MaxValue; i++)
             {
-                if (GetMd5Hash($"{secretKey}{i}").Substring(0, 5) == "00000")
+                if (GetMd5Hash($"{secretKey}{i}").Substring(0, numberOfZeros) == new string('0', numberOfZeros))
                     return i;
             }
             return 0;
         }
+        #endregion
     }
 }

@@ -1104,10 +1104,10 @@ namespace Mahamudra.AdventOfCode.UnitTests
         [TestMethod]
         public void DayFourAdventCoinsBigO2ɛn_ShouldCalculateExactAmountOfPaper_Equal()
         {
-            Assert.AreEqual(TwoThousandFifteen.DayFourAdventCoinsBigO2ɛn("abcdef"), 609043);
-            Assert.AreEqual(TwoThousandFifteen.DayFourAdventCoinsBigO2ɛn("pqrstuv"), 1048970);
-            Assert.AreEqual(TwoThousandFifteen.DayFourAdventCoinsBigO2ɛn(_secretKey), 117946);
-        }
-
+            Assert.AreEqual(TwoThousandFifteen.DayFourAdventCoinsBigO2ɛn("abcdef", 5), 609043);
+            Assert.AreEqual(TwoThousandFifteen.DayFourAdventCoinsBigO2ɛn("pqrstuv", 5), 1048970);
+            Assert.AreEqual(TwoThousandFifteen.DayFourAdventCoinsBigO2ɛn(_secretKey, 5), 117946);
+            Assert.AreEqual(TwoThousandFifteen.DayFourAdventCoinsBigO2ɛn(_secretKey, 6), 3938038);
+        } 
     }
 }
