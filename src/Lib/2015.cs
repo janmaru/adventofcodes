@@ -211,5 +211,54 @@ namespace Mahamudra.AdventOfCode.Core
             return 0;
         }
         #endregion
+        #region 5 day
+        public static long DayFiveNiceStringBigOɛnPower2(string niceString)
+        {
+            long count = 0;
+            string[] inputs = niceString.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+
+            var aeiou = new char[] { 'a', 'e', 'i', 'o', 'u' };
+            var noGoods = new string[] { "ab", "cd", "pq", "xy" };
+
+            foreach (var text in inputs)
+            {
+                var isnoGoods = false;
+                foreach (string no in noGoods)
+                {
+                    if (text.Trim().Contains(no))
+                    {
+                        isnoGoods = true;
+                        break;
+                    }
+                }
+
+                if (isnoGoods)
+                    continue;
+
+                var at = text.Select((c, index) => text.Substring(index).TakeWhile(e => e == c))
+                    .OrderByDescending(e => e.Count())
+                    .FirstOrDefault();  
+
+                if(at == null)
+                    continue; 
+ 
+                if (at.ToArray().Length < 2)
+                    continue;
+
+                var countVowels = 0;
+                foreach (char vow in aeiou)
+                {
+                    countVowels += text.Count(f => f == vow);
+                    if (countVowels >= 3)
+                    {
+                        count++;
+                        break;
+                    }
+                }
+            }
+
+            return count;
+        }
+        #endregion
     }
 }
