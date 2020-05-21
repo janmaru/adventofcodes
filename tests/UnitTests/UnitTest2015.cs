@@ -2122,5 +2122,15 @@ wtebigbaythklkbd
             Assert.AreEqual(TwoThousandFifteen.DayFiveNiceStringBigOɛnPower2("dvszwmarrgswjxmb"), 0); 
             Assert.AreEqual(TwoThousandFifteen.DayFiveNiceStringBigOɛnPower2(_niceString), 236);
         }
+
+        [TestMethod]
+        public void DayFive2QuestionNiceStringBigOɛnPower2_ShouldCalculateIsNice_AreEqual()
+        {
+            Assert.AreEqual(TwoThousandFifteen.DayFive2QuestionNiceStringBigOɛnPower2("qjhvhtzxzqqjkmpb"), 1); //is nice!
+            Assert.AreEqual(TwoThousandFifteen.DayFive2QuestionNiceStringBigOɛnPower2("xxyxx"), 1);
+            Assert.AreEqual(TwoThousandFifteen.DayFive2QuestionNiceStringBigOɛnPower2("uurcxstgmygtbstg"), 0);
+            Assert.AreEqual(TwoThousandFifteen.DayFive2QuestionNiceStringBigOɛnPower2("ieodomkazucvgmuy"), 0); 
+            Assert.AreEqual(TwoThousandFifteen.DayFive2QuestionNiceStringBigOɛnPower2(_niceString), 236);
+        }
     }
 }

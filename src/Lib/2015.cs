@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Mahamudra.AdventOfCode.Core
 {
@@ -211,6 +212,7 @@ namespace Mahamudra.AdventOfCode.Core
             return 0;
         }
         #endregion
+
         #region 5 day
         public static long DayFiveNiceStringBigOɛnPower2(string niceString)
         {
@@ -237,11 +239,11 @@ namespace Mahamudra.AdventOfCode.Core
 
                 var at = text.Select((c, index) => text.Substring(index).TakeWhile(e => e == c))
                     .OrderByDescending(e => e.Count())
-                    .FirstOrDefault();  
+                    .FirstOrDefault();
 
-                if(at == null)
-                    continue; 
- 
+                if (at == null)
+                    continue;
+
                 if (at.ToArray().Length < 2)
                     continue;
 
@@ -259,6 +261,55 @@ namespace Mahamudra.AdventOfCode.Core
 
             return count;
         }
+
+
+        private static Func<char[], bool> RepeatLetter = (ta) =>
+        {
+            var oddPrevious = ' ';
+            var evenprevious = ' ';
+
+            for (int i = 0; i < ta.Length; i++)
+            {
+                if (i % 2 == 0) //odd
+                    if (oddPrevious == ta[i])
+                        return true;
+                    else
+                        oddPrevious = ta[i];
+                else //even
+                {
+                    if (evenprevious == ta[i])
+                        return true;
+                    else
+                        evenprevious = ta[i];
+                }
+            }
+            return false;
+        };
+
+        private static Func<string, bool> TwoLettersTwice = (input) =>
+         {
+             var pattern = @"([a-zA-Z]{2,}).*?\1";
+
+             Match m = Regex.Match(input, pattern, RegexOptions.IgnoreCase);
+             return m.Success;
+         };
+
+        public static long DayFive2QuestionNiceStringBigOɛnPower2(string niceString)
+        {
+            long count = 0;
+            string[] inputs = niceString.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (var text in inputs)
+            {
+                var ta = text.ToCharArray();
+                if (RepeatLetter(ta) && TwoLettersTwice(text))
+                    count++;
+            }
+
+            return count;
+        }
         #endregion
+
+
     }
 }
