@@ -2447,7 +2447,7 @@ turn on 222,12 through 856,241";
             Assert.AreEqual(TwoThousandFifteen.DaySixQuestion2LightsBigOɛnPower2(firstCase), 1);
             var secondCase = @"toggle 0,0 through 999,999";
             Assert.AreEqual(TwoThousandFifteen.DaySixQuestion2LightsBigOɛnPower2(secondCase), 2000000);
-            Assert.AreEqual(TwoThousandFifteen.DaySixQuestion2LightsBigOɛnPower2(_lights), 5942219);
+            Assert.AreEqual(TwoThousandFifteen.DaySixQuestion2LightsBigOɛnPower2(_lights), 14687245);
         }
     }
 }
