@@ -310,6 +310,159 @@ namespace Mahamudra.AdventOfCode.Core
         }
         #endregion
 
+        #region 6 day
+        private static int CountOnOff(ref bool[,] matrix, bool onOff, int initI, int finI, int initJ, int finJ)
+        {
+            var count = 0;
+            for (int i = initI; i <= finI; i++)
+            {
+                for (int j = initJ; j <= finJ; j++)
+                {
+                    if (matrix[i, j] == onOff)
+                        count++;
+                }
+            }
+            return count;
+        }
 
+        private static void TurnOnOff(ref bool[,] matrix, bool onOff, int initI, int finI, int initJ, int finJ)
+        {
+            for (int i = initI; i <= finI; i++)
+            {
+                for (int j = initJ; j <= finJ; j++)
+                {
+                    matrix[i, j] = onOff;
+                }
+            }
+        }
+
+        private static void Toogle(ref bool[,] matrix, int initI, int finI, int initJ, int finJ)
+        {
+            for (int i = initI; i <= finI; i++)
+            {
+                for (int j = initJ; j <= finJ; j++)
+                {
+                    matrix[i, j] = !matrix[i, j];
+                }
+            }
+        }
+        public static int DaySixQuestionLightsBigOɛnPower2(string input)
+        {
+            string[] inputs = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+            bool[,] matrix = new bool[1000, 1000];
+
+            foreach (var item in inputs)
+            {
+                int initI, finI, initJ, finJ;
+                if (item.Contains("toggle"))
+                {
+                    var values = item.Replace("toggle ", "").Replace(" through ", ",").Split(',');
+                    initI = Convert.ToInt32(values[0]);
+                    initJ = Convert.ToInt32(values[1]);
+                    finI = Convert.ToInt32(values[2]);
+                    finJ = Convert.ToInt32(values[3]);
+                    Toogle(ref matrix, initI, finI, initJ, finJ);
+                }
+                else if (item.Contains("turn off"))
+                {
+                    var values = item.Replace("turn off ", "").Replace(" through ", ",").Split(',');
+                    initI = Convert.ToInt32(values[0]);
+                    initJ = Convert.ToInt32(values[1]);
+                    finI = Convert.ToInt32(values[2]);
+                    finJ = Convert.ToInt32(values[3]);
+                    TurnOnOff(ref matrix, false, initI, finI, initJ, finJ);
+                }
+                else if (item.Contains("turn on"))
+                {
+                    var values = item.Replace("turn on ", "").Replace(" through ", ",").Split(',');
+                    initI = Convert.ToInt32(values[0]);
+                    initJ = Convert.ToInt32(values[1]);
+                    finI = Convert.ToInt32(values[2]);
+                    finJ = Convert.ToInt32(values[3]);
+                    TurnOnOff(ref matrix, true, initI, finI, initJ, finJ);
+                }
+            }
+
+            return CountOnOff(ref matrix, true, 0, 999, 0, 999);
+        }
+
+        private static long CountOnOff2(ref int[,] matrix, int initI, int finI, int initJ, int finJ)
+        {
+            long count = 0;
+            for (int i = initI; i <= finI; i++)
+            {
+                for (int j = initJ; j <= finJ; j++)
+                {
+                    count += matrix[i, j];
+                }
+            }
+            return count;
+        }
+
+        private static void TurnOnOff2(ref int[,] matrix, int onOff, int initI, int finI, int initJ, int finJ)
+        {
+            for (int i = initI; i <= finI; i++)
+            {
+                for (int j = initJ; j <= finJ; j++)
+                {
+                    if (onOff == 1)
+                        matrix[i, j] += 1;
+                    else
+                        matrix[i, j] = matrix[i, j] > 0 ? matrix[i, j] - 1 : 0;
+                }
+            }
+        }
+
+        private static void Toogle2(ref int[,] matrix, int initI, int finI, int initJ, int finJ)
+        {
+            for (int i = initI; i <= finI; i++)
+            {
+                for (int j = initJ; j <= finJ; j++)
+                {
+                    matrix[i, j] += 2;
+                }
+            }
+        }
+        public static long DaySixQuestion2LightsBigOɛnPower2(string input)
+        {
+            string[] inputs = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+            int[,] matrix = new int[1000, 1000];
+
+            foreach (var item in inputs)
+            {
+                int initI, finI, initJ, finJ;
+                if (item.Contains("toggle"))
+                {
+                    var values = item.Replace("toggle ", "").Replace(" through ", ",").Split(',');
+                    initI = Convert.ToInt32(values[0]);
+                    initJ = Convert.ToInt32(values[1]);
+                    finI = Convert.ToInt32(values[2]);
+                    finJ = Convert.ToInt32(values[3]);
+                    Toogle2(ref matrix, initI, finI, initJ, finJ);
+                }
+                else if (item.Contains("turn off"))
+                {
+                    var values = item.Replace("turn off ", "").Replace(" through ", ",").Split(',');
+                    initI = Convert.ToInt32(values[0]);
+                    initJ = Convert.ToInt32(values[1]);
+                    finI = Convert.ToInt32(values[2]);
+                    finJ = Convert.ToInt32(values[3]);
+                    TurnOnOff2(ref matrix, -1, initI, finI, initJ, finJ);
+                }
+                else if (item.Contains("turn on"))
+                {
+                    var values = item.Replace("turn on ", "").Replace(" through ", ",").Split(',');
+                    initI = Convert.ToInt32(values[0]);
+                    initJ = Convert.ToInt32(values[1]);
+                    finI = Convert.ToInt32(values[2]);
+                    finJ = Convert.ToInt32(values[3]);
+                    TurnOnOff2(ref matrix, 1, initI, finI, initJ, finJ);
+                }
+            }
+
+            return CountOnOff2(ref matrix, 0, 999, 0, 999);
+        }
+
+        #endregion
     }
 }
