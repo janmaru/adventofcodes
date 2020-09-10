@@ -2321,6 +2321,7 @@ turn on 766,112 through 792,868
 turn on 222,12 through 856,241";
         }
 
+        #region 1 Day
         [TestMethod]
         public void DayOneWhatFloorBigO2ɛn_ShouldGetToTheRightFloor_Equal()
         {
@@ -2359,7 +2360,9 @@ turn on 222,12 through 856,241";
             Assert.AreEqual(TwoThousandFifteen.DayOneWhatFloorv3BigO2ɛn("))("), -1);
             Assert.AreEqual(TwoThousandFifteen.DayOneWhatFloorv3BigO2ɛn(_inputDayOne), 280);
         }
+        #endregion
 
+        #region 2 Day
         [TestMethod]
         public void DayOneSecondQuestionWhatFloorBigO2ɛn_ShouldGetToTheRightFloor_Equal()
         {
@@ -2385,7 +2388,9 @@ turn on 222,12 through 856,241";
             Assert.AreEqual(TwoThousandFifteen.DayTwoRibbonBigOɛn(_inputDayTwo.Split(Environment.NewLine)), 3783758);
         }
 
+        #endregion
 
+        #region 3 Day
         [TestMethod]
         public void DayThreeHouseBigOɛn_ShouldCalculateHouseVisited_Equal()
         {
@@ -2403,7 +2408,10 @@ turn on 222,12 through 856,241";
             Assert.AreEqual(TwoThousandFifteen.DayThreeHouseTwoSantaBigO2ɛn("^v^v^v^v^v"), 11);
             Assert.AreEqual(TwoThousandFifteen.DayThreeHouseTwoSantaBigO2ɛn(_inputDayThree), 2631);
         }
+        #endregion
 
+
+        #region 4 Day
         [TestMethod]
         public void DayFourAdventCoinsBigO2ɛn_ShouldCalculateExactAmountOfPaper_Equal()
         {
@@ -2420,23 +2428,27 @@ turn on 222,12 through 856,241";
             Assert.AreEqual(TwoThousandFifteen.DayFiveNiceStringBigOɛnPower2("aaa"), 1);
             Assert.AreEqual(TwoThousandFifteen.DayFiveNiceStringBigOɛnPower2("jchzalrnumimnmhp"), 0);
             Assert.AreEqual(TwoThousandFifteen.DayFiveNiceStringBigOɛnPower2("haegwjzuvuyypxyu"), 0);
-            Assert.AreEqual(TwoThousandFifteen.DayFiveNiceStringBigOɛnPower2("dvszwmarrgswjxmb"), 0); 
+            Assert.AreEqual(TwoThousandFifteen.DayFiveNiceStringBigOɛnPower2("dvszwmarrgswjxmb"), 0);
             Assert.AreEqual(TwoThousandFifteen.DayFiveNiceStringBigOɛnPower2(_niceString), 236);
         }
+        #endregion
 
+        #region 5 Day
         [TestMethod]
         public void DayFive2QuestionNiceStringBigOɛnPower2_ShouldCalculateIsNice_AreEqual()
         {
             Assert.AreEqual(TwoThousandFifteen.DayFive2QuestionNiceStringBigOɛnPower2("qjhvhtzxzqqjkmpb"), 1); //is nice!
             Assert.AreEqual(TwoThousandFifteen.DayFive2QuestionNiceStringBigOɛnPower2("xxyxx"), 1);
             Assert.AreEqual(TwoThousandFifteen.DayFive2QuestionNiceStringBigOɛnPower2("uurcxstgmygtbstg"), 0);
-            Assert.AreEqual(TwoThousandFifteen.DayFive2QuestionNiceStringBigOɛnPower2("ieodomkazucvgmuy"), 0); 
+            Assert.AreEqual(TwoThousandFifteen.DayFive2QuestionNiceStringBigOɛnPower2("ieodomkazucvgmuy"), 0);
             Assert.AreEqual(TwoThousandFifteen.DayFive2QuestionNiceStringBigOɛnPower2(_niceString), 236);
         }
+        #endregion
 
+        #region 6 Day
         [TestMethod]
         public void DaySixQuestionLightsBigOɛnPower2_ShouldCalculateIsNice_AreEqual()
-        { 
+        {
             Assert.AreEqual(TwoThousandFifteen.DaySixQuestionLightsBigOɛnPower2(_lights), 543903);
         }
 
@@ -2449,5 +2461,26 @@ turn on 222,12 through 856,241";
             Assert.AreEqual(TwoThousandFifteen.DaySixQuestion2LightsBigOɛnPower2(secondCase), 2000000);
             Assert.AreEqual(TwoThousandFifteen.DaySixQuestion2LightsBigOɛnPower2(_lights), 14687245);
         }
+        #endregion
+
+        #region 7 Day
+        #endregion
+
+        #region 8 Day
+        [TestMethod]
+        public void DayEightQuestionStringLiteralO2ɛn_ShouldBeEqual_True()
+        {
+            //var input = new string[] { "", "abc", "aaa\"aaa", "\x27" };
+            //Assert.AreEqual(TwoThousandFifteen.DayEightQuestionStringLiteralO2ɛn(input), 12); 
+            string str = null;
+            var len = SafeGetLength(str); 
+            Assert.AreEqual(len, 0);
+        }
+        private static int SafeGetLength(string valueOrNull)
+        {
+            return (valueOrNull ?? string.Empty).Length;
+        }
+        #endregion
+
     }
 }

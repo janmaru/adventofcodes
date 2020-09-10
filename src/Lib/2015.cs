@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -463,6 +465,48 @@ namespace Mahamudra.AdventOfCode.Core
             return CountOnOff2(ref matrix, 0, 999, 0, 999);
         }
 
+        #endregion
+
+
+        #region 7 day 
+        public static Int16 DaySevenQuestionCircuitOɛn(string input)
+        {
+            string[] circuit = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (var branch in circuit)
+            {
+                
+            }
+
+            return 0;
+        }
+
+        #endregion
+
+        #region 8 day
+        private static int CountTextElements(String s)
+        { 
+            StringBuilder builder = new StringBuilder(s.Length);
+            foreach (Rune rune in s.EnumerateRunes())
+            {
+                builder.Append(Rune.ToUpperInvariant(rune));
+            }
+            return builder.Length; 
+        }
+
+        public static int DayEightQuestionStringLiteralO2ɛn(string[] input)
+        {
+            var count = 0;
+
+            foreach (var item in input)
+            {
+                var nStringcode = item.GetHashCode().ToString().Length + 1;
+                var nInMemory = item.Length;
+                count += nStringcode - nInMemory;
+            }
+
+            return count;
+        }
         #endregion
     }
 }
