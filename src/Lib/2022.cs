@@ -40,7 +40,7 @@ namespace Mahamudra.AdventOfCode.Core
                     previous += Convert.ToInt32(line);
             }
             return lista.OrderByDescending(s => s).Take(3).Sum();
-        }
+        } 
         #endregion 
     }
 }
