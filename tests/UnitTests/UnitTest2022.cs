@@ -1,5 +1,6 @@
 ﻿using Mahamudra.AdventOfCode.Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json.Linq;
 using System;
 
 namespace Mahamudra.AdventOfCode.UnitTests
@@ -4826,6 +4827,21 @@ C Z";
             result = TwoThousandTwentyTwo.DayTwoRockPaperScissors2(input);
             Assert.AreEqual(result, 11618);
         }
+
+//A rock     X rock
+//B paper    Y paper
+//C scissor  Z scissor
+
+//        A   B   C
+//Y(2)    8   5   2          
+//X(1)    4   1   7          
+//Z(3)    3   9   6          
+
+//        A   B   C
+//Y(2)    4   5   6          draw
+//X(1)    3   1   2          lose
+//Z(3)    8   9   7          win
+
         #endregion
 
     }
